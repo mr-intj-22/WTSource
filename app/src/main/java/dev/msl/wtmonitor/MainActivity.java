@@ -1,6 +1,10 @@
 package dev.msl.wtmonitor;
 
+import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -11,12 +15,18 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,13 +34,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dev.msl.wtmonitor.POJO.Scenario;
 import dev.msl.wtmonitor.Scenarios.ScenariosAdapter;
+import dev.msl.wtmonitor.Utils.BTUtils;
 import dev.msl.wtmonitor.Utils.Const;
 import dev.msl.wtmonitor.Utils.ScenarioUtils;
 
 import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 import static dev.msl.wtmonitor.Utils.Const.*;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
 
 
     /* Side View */
@@ -63,12 +74,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Toolbar toolbar;
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
+    SwitchCompat btSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        registerReceiver(mReceiver, filter);
 
         /* main */
         setSupportActionBar(toolbar);
@@ -126,13 +141,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     scenarios.add(scenario);
                 }
                 scenario.setDuration(Integer.valueOf(add_scenario_duration.getText().toString()));
-                Log.d("JSON", "start: " + scenario.getStart_time());
-                Log.d("JSON", "for: " + scenario.getDuration());
-                Log.d("JSON", "total: " + scenario.getTotal());
                 ScenarioUtils.sortScenarios(scenarios);
                 scenarios = ScenarioUtils.combineScenarios(scenarios);
-                scenariosAdapter.insert(scenario);
-//                rvScenarios.scrollToPosition(scenarios.indexOf(scenario));
                 add_scenario_view.animate().alpha(0.0f);
                 add_scenario_view.setVisibility(View.GONE);
                 addScenario.show();
@@ -179,5 +189,70 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        MenuItem item = menu.findItem(R.id.bt_switch_item);
+        ViewGroup viewGroup = (ViewGroup) item.getActionView();
+        btSwitch = viewGroup.findViewById(R.id.bt_switch);
+        btSwitch.setChecked(BTUtils.isBTEnabled());
+        btSwitch.setOnCheckedChangeListener(this);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.connect_bt:
+                if (!BTUtils.isBTEnabled()) BTUtils.enableBT();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        if (b) {
+            BTUtils.enableBT();
+        } else {
+            BTUtils.disableBT();
+        }
+    }
+
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+
+            if (action != null && action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
+                final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE,
+                        BluetoothAdapter.ERROR);
+                switch (state) {
+                    case BluetoothAdapter.STATE_OFF:
+                        // Bluetooth has been turned off;
+                        btSwitch.setChecked(false);
+                        break;
+                    case BluetoothAdapter.STATE_TURNING_OFF:
+                        // Bluetooth is turning off;
+                        break;
+                    case BluetoothAdapter.STATE_ON:
+                        // Bluetooth has been turned on
+                        btSwitch.setChecked(true);
+                        break;
+                    case BluetoothAdapter.STATE_TURNING_ON:
+                        // Bluetooth is turning on
+                        break;
+                }
+            }
+        }
+    };
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        // Unregister broadcast listeners
+        unregisterReceiver(mReceiver);
     }
 }

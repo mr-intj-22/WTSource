@@ -66,7 +66,7 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.Scen
 
     @Override
     public int getItemCount() {
-        return scenarios != null ? scenarios.size() : 0;
+        return scenarios.size();
     }
 
     public class ScenariosViewHolder extends RecyclerView.ViewHolder {

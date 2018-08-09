@@ -11,4 +11,9 @@
         <item name="android:windowLightNavigationBar">true</item>
     </style>
 
+    <style name="SwitchCompatStyle" >
+        <item name="android:thumb">@drawable/switch_thumb</item>
+        <item name="trackTint">@color/switch_color</item>
+    </style>
+
 </resources>

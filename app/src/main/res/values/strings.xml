@@ -26,4 +26,7 @@
         <item>Graphical</item>
     </string-array>
 
+
+    <string name="search_bluetooth">find and connect to a Bluetooth Device</string>
+
 </resources>
