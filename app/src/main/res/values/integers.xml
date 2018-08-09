@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="default_motor_speed">35</integer>
+    <integer name="default_motor_angle">12</integer>
+
+</resources>
