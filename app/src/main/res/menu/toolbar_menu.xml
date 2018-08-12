@@ -5,7 +5,7 @@
         android:id="@+id/connect_bt"
         android:title="@string/search_bluetooth"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_bluetooth_black_24dp"/>
+        android:icon="@drawable/ic_bluetooth_searching_black_24dp"/>
     <item
         android:id="@+id/bt_switch_item"
         app:actionLayout="@layout/bt_switch"

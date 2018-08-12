@@ -17,7 +17,7 @@ public class JSONUtils {
         return App.getGson().fromJson(JSON, MonitoredData.class);
     }
 
-    public static String toJson(MonitoredData data) {
+    public static String toJson(SentData data) {
         return App.getGson().toJson(data) + "\r";
     }
 

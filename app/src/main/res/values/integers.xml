@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <integer name="default_motor_speed">35</integer>
-    <integer name="default_motor_angle">12</integer>
+    <integer name="default_motor_speed">17</integer>
+    <integer name="max_motor_speed">35</integer>
+    <integer name="min_motor_speed">0</integer>
+
+    <integer name="default_motor_angle">15</integer>
+    <integer name="max_motor_angle">30</integer>
+    <integer name="min_motor_angle">0</integer>
+    <integer name="angle_value_margin">15</integer>
 
 </resources>

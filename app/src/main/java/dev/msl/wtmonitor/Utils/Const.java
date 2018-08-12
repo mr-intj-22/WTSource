@@ -2,19 +2,18 @@ package dev.msl.wtmonitor.Utils;
 
 public class Const {
 
-    public static final int ADD_SCENARIO = 100;
-    public static final int ENABLE_BT = 101;
-
     public static final int SPEED = 0;
-    public static final int MAX_SPEED = 35;
-    public static final int MIN_SPEED = 5;
-    public static final int DEFAULT_SPEED = 20;
     public static final int ANGLE = 1;
-    public static final int MAX_ANGLE = 90;
-    public static final int MIN_ANGLE = 0;
-    public static final int DEFAULT_ANGLE = 45;
-    public static final int MAX_DURATION = 60;
-    public static final int MIN_DURATION = 0;
 
+    // Message types sent from the BluetoothChatService Handler
+    public static final int MESSAGE_STATE_CHANGE = 1;
+    public static final int MESSAGE_READ = 2;
+    public static final int MESSAGE_WRITE = 3;
+    public static final int MESSAGE_DEVICE_NAME = 4;
+    public static final int MESSAGE_TOAST = 5;
+
+    // Key names received from the BluetoothChatService Handler
+    public static final String DEVICE_NAME = "device_name";
+    public static final String TOAST = "toast";
 
 }

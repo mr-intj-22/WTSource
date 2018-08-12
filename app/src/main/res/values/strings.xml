@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">WT Monitor</string>
+    <string name="app_name">WindTunnel Monitor</string>
 
+    <!--scenario-->
     <string name="no_scenarios">No Scenarios found!</string>
     <string name="scenarios">Scenarios</string>
     <string name="motor_angle">Motor Angle</string>
@@ -21,12 +22,25 @@
         <item>angle</item>
     </string-array>
 
+    <!--side-small-->
+    <string name="disconnected">Disconnected</string>
+    <string name="connected">Connected to: %s</string>
+    <string name="scanning">Scanning…</string>
+    <string name="select_device">Select Device</string>
+    <string name="title_other_devices">other_devices</string>
+    <string name="button_scan">scan</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="none_paired">No Paired Devices</string>
+    <string name="none_found">No Devices Found</string>
+    <string name="scenario_status">Scenarios</string>
+
+    <!--toolbar and tab layout-->
     <string-array name="tabs">
         <item>Digital</item>
         <item>Graphical</item>
     </string-array>
-
-
     <string name="search_bluetooth">find and connect to a Bluetooth Device</string>
+    <string name="turning_bt_on">Turning Bluetooth on…</string>
+    <string name="turning_bt_off">Turning Bluetooth off…</string>
 
 </resources>
