@@ -32,8 +32,7 @@ public class BTUtils {
     }
 
     public static boolean isBTEnabled() {
-//        return App.getBluetoothAdapter().isEnabled();
-        return true;
+        return true;// App.getBluetoothAdapter().isEnabled();
     }
 
     public static void enableBT() {

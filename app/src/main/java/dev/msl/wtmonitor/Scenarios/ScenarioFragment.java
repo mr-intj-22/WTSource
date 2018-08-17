@@ -1,4 +1,4 @@
-package dev.msl.wtmonitor.Scenario;
+package dev.msl.wtmonitor.Scenarios;
 
 
 import android.os.Bundle;

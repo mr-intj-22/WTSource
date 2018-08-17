@@ -11,10 +11,6 @@ public class App extends Application {
     private static Gson gson;
     private static BluetoothAdapter bluetoothAdapter;
 
-    public Context getAppContext() {
-        return this;
-    }
-
     public static synchronized Gson getGson() {
         if (gson == null) gson = new Gson();
         return gson;

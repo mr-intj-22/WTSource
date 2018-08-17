@@ -14,7 +14,12 @@ import dev.msl.wtmonitor.POJO.SentData;
 public class JSONUtils {
 
     public static MonitoredData fromJSON(String JSON) {
-        return App.getGson().fromJson(JSON, MonitoredData.class);
+        try {
+            return App.getGson().fromJson(JSON, MonitoredData.class);
+        }catch (Exception e){
+            Log.d("JSON", e.getMessage());
+            return new MonitoredData();
+        }
     }
 
     public static String toJson(SentData data) {

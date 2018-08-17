@@ -24,7 +24,8 @@
 
     <!--side-small-->
     <string name="disconnected">Disconnected</string>
-    <string name="connected">Connected to: %s</string>
+    <string name="connected">Connected</string>
+    <string name="connecting">Connecting...</string>
     <string name="scanning">Scanning…</string>
     <string name="select_device">Select Device</string>
     <string name="title_other_devices">other_devices</string>
@@ -32,6 +33,7 @@
     <string name="title_paired_devices">Paired Devices</string>
     <string name="none_paired">No Paired Devices</string>
     <string name="none_found">No Devices Found</string>
+    <string name="none_connected">No Connected Devices Found</string>
     <string name="scenario_status">Scenarios</string>
 
     <!--toolbar and tab layout-->
@@ -42,5 +44,55 @@
     <string name="search_bluetooth">find and connect to a Bluetooth Device</string>
     <string name="turning_bt_on">Turning Bluetooth on…</string>
     <string name="turning_bt_off">Turning Bluetooth off…</string>
+
+    <!--Errors-->
+    <string name="close_error">Could not close unwanted socket</string>
+
+    <!--Digital-->
+    <string name="title_motor_speed">Motor Speed</string>
+    <string name="title_wind_speed">Wind Speed</string>
+    <string name="title_attack_angle">Attack Angle</string>
+    <string name="title_pitot_speed">Pitot Speed</string>
+    <string name="title_temperature">Temperature</string>
+    <string name="title_humidity">Humidity</string>
+    <string name="title_altitude">Altitude</string>
+    <string name="title_weight_1">Weight 1</string>
+    <string name="title_weight_2">Weight 2</string>
+    <string name="title_weight_3">Weight 3</string>
+    <string name="plot_dialog_title">Data to plot</string>
+    <string-array name="digital_titles">
+        <item>Motor Speed</item>
+        <item>Wind Speed</item>
+        <item>Attack Angle</item>
+        <item>Pitot Speed</item>
+        <item>Temperature</item>
+        <item>Humidity</item>
+        <item>Altitude</item>
+        <item>Weight 1</item>
+        <item>Weight 2</item>
+        <item>Weight 3</item>
+    </string-array>
+
+    <string name="unit_speed">m/s</string>
+    <string name="unit_angle">\u00B0</string>
+    <string name="unit_temperature">\u2103</string>
+    <string name="unit_humidity">%</string>
+    <string name="unit_altitude">m</string>
+    <string name="unit_weight">N</string>
+    <string-array name="digital_units">
+        <item>mps</item>
+        <item>mps</item>
+        <item>deg</item>
+        <item>mps</item>
+        <item>\u2103</item>
+        <item>%</item>
+        <item>m</item>
+        <item>N</item>
+        <item>N</item>
+        <item>N</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

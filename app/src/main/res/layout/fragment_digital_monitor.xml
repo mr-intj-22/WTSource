@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:alignmentMode="alignMargins"
+        android:columnCount="4"
+        android:columnOrderPreserved="false"
+        android:rowCount="1"
+        android:rowOrderPreserved="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/title_motor_speed"
+                app:autoSizeTextType="uniform" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/motor_speed"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="3"
+                android:background="@drawable/value_bg"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/primary_text"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/title_wind_speed"
+                app:autoSizeTextType="uniform" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/wind_speed"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="3"
+                android:background="@drawable/value_bg"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/primary_text"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/title_attack_angle"
+                app:autoSizeTextType="uniform" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/attack_angle"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="3"
+                android:background="@drawable/value_bg"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingEnd="24dp"
+                android:paddingStart="24dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/primary_text"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/title_pitot_speed"
+                app:autoSizeTextType="uniform" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/pitot_speed"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="3"
+                android:background="@drawable/value_bg"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/primary_text"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:alignmentMode="alignMargins"
+        android:columnCount="3"
+        android:columnOrderPreserved="false"
+        android:rowCount="1"
+        android:rowOrderPreserved="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/title_temperature"
+                app:autoSizeTextType="uniform" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/temperature"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="3"
+                android:background="@drawable/value_bg"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/primary_text"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/title_altitude"
+                app:autoSizeTextType="uniform" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/altitude"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="3"
+                android:background="@drawable/value_bg"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/primary_text"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/title_humidity"
+                app:autoSizeTextType="uniform" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/humidity"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="3"
+                android:background="@drawable/value_bg"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/primary_text"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:alignmentMode="alignMargins"
+        android:columnCount="3"
+        android:columnOrderPreserved="false"
+        android:rowCount="1"
+        android:rowOrderPreserved="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/title_weight_1"
+                app:autoSizeTextType="uniform" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/weight_1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="3"
+                android:background="@drawable/value_bg"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/primary_text"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/title_weight_2"
+                app:autoSizeTextType="uniform" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/weight_2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="3"
+                android:background="@drawable/value_bg"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/primary_text"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/title_weight_3"
+                app:autoSizeTextType="uniform" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/weight_3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="3"
+                android:background="@drawable/value_bg"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/primary_text"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+    </GridLayout>
+
+</LinearLayout>

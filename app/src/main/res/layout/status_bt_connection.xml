@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
 
-    <ImageView
-        android:id="@+id/bt_img_connection_status"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+    <FrameLayout
+        android:id="@+id/st"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:background="@drawable/bt_connection_status"
-        android:backgroundTint="@color/disconnected" />
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/bt_img_connection_status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="6dp"
+            android:background="@drawable/bt_connection_status"
+            android:backgroundTint="@color/disconnected" />
+
+        <ProgressBar
+            android:id="@+id/bt_progress_connection_status"
+            style="@style/Base.Widget.AppCompat.ProgressBar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginEnd="16dp"
-        android:layout_toStartOf="@id/bt_img_connection_status"
+        android:layout_toStartOf="@id/st"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -32,12 +49,13 @@
 
         <TextView
             android:id="@+id/bt_connected_name"
-            style="?textAppearanceListItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:gravity="start"
             android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small"
+            android:textSize="14sp"
             android:visibility="gone" />
 
     </LinearLayout>

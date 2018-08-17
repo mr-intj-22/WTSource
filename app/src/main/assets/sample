@@ -1,12 +1,12 @@
 {
-  "Motor_Speed"  : 10,
-  "Wind_Speed"   : 10,
-  "Temperature"  : 10,
-  "Humidity"     : 10,
-  "Altitude"     : 10,
-  "Weight_1"     : 10,
-  "Weight_2"     : 10,
-  "Weight_3"     : 10,
-  "Attack_Angle" : 10,
+  "Motor_Speed"        : 10,
+  "Wind_Speed"         : 10,
+  "Temperature"        : 10,
+  "Humidity"           : 10,
+  "Altitude"           : 10,
+  "Weight_1"           : 10,
+  "Weight_2"           : 10,
+  "Weight_3"           : 10,
+  "Attack_Angle"       : 10,
   "Target_Pitot_Speed" : 10
 }
