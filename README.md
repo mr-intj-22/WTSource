@@ -12,3 +12,14 @@ A **Monitoring** and **Controlling** app for a WindTunnel, using data sent from 
 ## Screenshots
 
 ![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+
+## Libraries Used
+
+- Google, Support Library
+- Google, Support Design Library
+- Google, Appcompat Library
+- Google, CardView Library
+- Google, GSON Library
+- @github/liefery, android-vertical-stepper-view Library
+- @github/jjoe64, GraphView Library
+- @github/JakeWharton, butterknife Library
