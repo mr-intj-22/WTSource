@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#3F51B5</color>
-    <color name="primary_dark">#303F9F</color>
-    <color name="primary_light">#C5CAE9</color>
-    <color name="accent">#FF9800</color>
+    <color name="primary">#1976d2</color>
+    <color name="primary_dark">#311b92</color>
+    <color name="primary_light">#81d4fa</color>
+    <color name="accent">#81d4fa</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
@@ -12,7 +12,7 @@
     <color name="connected">#33691e</color>
     <color name="connecting">#f57c00</color>
     <color name="disconnected">#d50000</color>
-    <color name="accent_track">#96ff9800</color>
+    <color name="accent_track">#80d8ff</color>
     <color name="gray">#54000000</color>
 
 </resources>

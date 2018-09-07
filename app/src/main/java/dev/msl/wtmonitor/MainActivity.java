@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -49,6 +50,7 @@ import dev.msl.wtmonitor.Utils.BTUtils;
 import dev.msl.wtmonitor.Utils.Const;
 import dev.msl.wtmonitor.Utils.JSONUtils;
 
+import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 import static dev.msl.wtmonitor.Utils.BTUtils.disableBT;
 import static dev.msl.wtmonitor.Utils.BTUtils.enableBT;
 import static dev.msl.wtmonitor.Utils.BTUtils.isBTEnabled;
@@ -279,10 +281,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        Toast.makeText(this,
-                speedSeek.getProgress() + " - " + (angleSeek.getProgress() - getResources().getInteger(R.integer.angle_value_margin)),
-                Toast.LENGTH_SHORT).show();
-        sendData();
+        sendData(speedSeek.getProgress(), angleSeek.getProgress() - getResources().getInteger(R.integer.angle_value_margin));
     }
 
     /* Bluetooth Service */
@@ -305,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     /**
      * Sends a json data.
      */
-    private void sendData() {
+    public void sendData(int speed, int angle) {
         // Check that we're actually connected before trying anything
         if (bluetoothService.getState() != BluetoothService.STATE_CONNECTED) {
             Toast.makeText(this, R.string.none_found, Toast.LENGTH_SHORT).show();
@@ -313,8 +312,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         }
 
         SentData sentData = new SentData();
-        sentData.setAttack_Angle(angleSeek.getProgress() - getResources().getInteger(R.integer.angle_value_margin));
-        sentData.setTarget_Pitot_Speed(speedSeek.getProgress());
+        sentData.setAttack_Angle(angle);
+        sentData.setTarget_Pitot_Speed(speed);
         String message = JSONUtils.toJson(sentData);
 
         // Check that there's actually something to send
@@ -339,6 +338,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 visibility = View.VISIBLE;
                 btStateProgress.setVisibility(View.GONE);
                 btName.setText(name);
+                getWindow().addFlags(FLAG_KEEP_SCREEN_ON);
                 break;
             case BluetoothService.STATE_CONNECTING:
                 resId = R.string.connecting;
@@ -351,6 +351,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 colorId = R.color.disconnected;
                 visibility = View.GONE;
                 btStateProgress.setVisibility(View.GONE);
+                getWindow().clearFlags(FLAG_KEEP_SCREEN_ON);
                 break;
         }
         btStatus.setText(resId);

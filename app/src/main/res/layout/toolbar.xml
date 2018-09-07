@@ -8,14 +8,15 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize" />
+        android:layout_height="?android:actionBarSize"
+        app:navigationIcon="@drawable/logo"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorColor="?colorAccent"
-        app:tabSelectedTextColor="?colorAccent"
+        app:tabIndicatorColor="@color/accent"
+        app:tabSelectedTextColor="@color/accent"
         app:tabTextColor="@android:color/darker_gray" />
 
 </android.support.design.widget.AppBarLayout>

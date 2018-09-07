@@ -2,102 +2,121 @@ package dev.msl.wtmonitor.Scenarios;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.github.vipulasri.timelineview.TimelineView;
+import com.liefery.android.vertical_stepper_view.VerticalStepperAdapter;
 
 import java.util.ArrayList;
 
 import dev.msl.wtmonitor.POJO.Scenario;
 import dev.msl.wtmonitor.R;
-import dev.msl.wtmonitor.Utils.ScenarioUtils;
 
-public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.ScenariosViewHolder> {
+public class ScenariosAdapter extends VerticalStepperAdapter {
 
-    private ArrayList<Scenario> scenarios;
     private Context c;
-    private LayoutInflater mLayoutInflater;
-    private int oldPos = 0;
+    private ArrayList<Scenario> scenarios;
+    private int position = 0;
 
-    public ScenariosAdapter(Context c, ArrayList<Scenario> scenarios) {
-        this.c = c;
-        mLayoutInflater = LayoutInflater.from(c);
-        this.scenarios = scenarios;
-        notifyItemChanged(0, scenarios.size());
+    public ScenariosAdapter(Context context) {
+        super(context);
+        this.c = context;
+        scenarios = new ArrayList<>();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return TimelineView.getTimeLineViewType(position, getItemCount());
+    public void addStep(Scenario scenario) {
+        scenarios.add(scenario);
+        notifyDataSetChanged();
+        if (position > 0)
+            reset();
+    }
+
+    public void addStep(ArrayList<Scenario> scenarios) {
+        this.scenarios = scenarios;
+        notifyDataSetChanged();
+        if (position > 0)
+            reset();
+    }
+
+    public void clear() {
+        scenarios.clear();
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public ScenariosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ScenariosViewHolder(mLayoutInflater.inflate(R.layout.scenario_item, parent, false), viewType);
+    public CharSequence getTitle(int position) {
+        return String.format(c.getResources().getString(R.string.time), scenarios.get(position).getDuration());
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getSummary(int position) {
+        return String.format(c.getResources().getString(R.string.step_subtitle),
+                scenarios.get(position).getMotor_speed(), scenarios.get(position).getMotor_angle());
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ScenariosViewHolder holder, int position) {
-
-        if (scenarios.get(position).getMotor_speed() != -1) {
-            holder.getSpeed().setVisibility(View.VISIBLE);
-            holder.getSpeed().setText(String.format(c.getResources().getString(R.string.motor_speed_value),
-                    scenarios.get(position).getMotor_speed()));
-        }
-
-        if (scenarios.get(position).getMotor_angle() != -1) {
-            holder.getAngle().setVisibility(View.VISIBLE);
-            holder.getAngle().setText(String.format(c.getResources().getString(R.string.motor_angle_value),
-                    scenarios.get(position).getMotor_angle()));
-        }
-
-        holder.getTime().setText(String.format(c.getResources().getString(R.string.time), scenarios.get(position).getStart_time()));
-
-        if (position == oldPos) {
-            holder.getTimelineView().setMarker(ActivityCompat.getDrawable(c, R.drawable.ic_marker_active));
-        }
+    public boolean isEditable(int position) {
+        return false;
     }
 
     @Override
-    public int getItemCount() {
-        return scenarios.size();
+    public int getCount() {
+        return scenarios != null ? scenarios.size() : 0;
     }
 
-    public class ScenariosViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public Void getItem(int position) {
+        return null;
+    }
 
-        private AppCompatTextView angle, speed, time;
-        private TimelineView timelineView;
+    @NonNull
+    @Override
+    public View onCreateContentView(Context context, int position) {
+        View content = new MainItemView(context);
 
-        public ScenariosViewHolder(View itemView, int viewType) {
-            super(itemView);
-            angle = itemView.findViewById(R.id.text_timeline_angle);
-            speed = itemView.findViewById(R.id.text_timeline_speed);
-            time = itemView.findViewById(R.id.text_timeline_time);
-            timelineView = itemView.findViewById(R.id.time_marker);
-            timelineView.initLine(viewType);
-        }
+        AppCompatTextView speed = content.findViewById(R.id.text_timeline_speed);
+        AppCompatTextView angle = content.findViewById(R.id.text_timeline_angle);
+        speed.setText(String.format(c.getResources().getString(R.string.motor_speed_value),
+                scenarios.get(position).getMotor_speed()));
+        angle.setText(String.format(c.getResources().getString(R.string.motor_angle_value),
+                scenarios.get(position).getMotor_angle()));
 
-        public AppCompatTextView getAngle() {
-            return angle;
-        }
+        return content;
+    }
 
-        public AppCompatTextView getSpeed() {
-            return speed;
-        }
+    @Nullable
+    @Override
+    public void next() {
+        super.next();
+        position++;
+    }
 
-        public AppCompatTextView getTime() {
-            return time;
-        }
+    @Nullable
+    @Override
+    public void previous() {
+        super.previous();
+        position--;
+    }
 
-        public TimelineView getTimelineView() {
-            return timelineView;
-        }
+    public void reset() {
+        jumpTo(0);
+        position = 0;
+    }
+
+    @Override
+    public void jumpTo(int position) {
+        super.jumpTo(position);
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public Scenario getScenario() {
+        return scenarios.get(position);
     }
 
 }

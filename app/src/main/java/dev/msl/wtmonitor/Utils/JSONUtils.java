@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 
 import dev.msl.wtmonitor.App;
 import dev.msl.wtmonitor.POJO.MonitoredData;
+import dev.msl.wtmonitor.POJO.Scenario;
 import dev.msl.wtmonitor.POJO.SentData;
 
 public class JSONUtils {
@@ -16,37 +17,23 @@ public class JSONUtils {
     public static MonitoredData fromJSON(String JSON) {
         try {
             return App.getGson().fromJson(JSON, MonitoredData.class);
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.d("JSON", e.getMessage());
             return new MonitoredData();
         }
     }
 
-    public static String toJson(SentData data) {
-        return App.getGson().toJson(data) + "\r";
-    }
-
-    public static String getSampleJSON(Context c) {
+    public static Scenario scenarioFromJSON(String JSON) {
         try {
-
-            StringBuilder buf = new StringBuilder();
-            InputStream json = c.getAssets().open("sample");
-            BufferedReader in =
-                    new BufferedReader(new InputStreamReader(json, "UTF-8"));
-            String str;
-
-            while ((str = in.readLine()) != null) {
-                buf.append(str);
-            }
-
-            in.close();
-
-            return buf.toString();
-
+            return App.getGson().fromJson(JSON, Scenario.class);
         } catch (Exception e) {
             Log.d("JSON", e.getMessage());
+            return new Scenario();
         }
-        return "";
+    }
+
+    public static String toJson(SentData data) {
+        return App.getGson().toJson(data) + "\r";
     }
 
 }

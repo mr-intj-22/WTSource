@@ -15,6 +15,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -41,12 +44,10 @@ import dev.msl.wtmonitor.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Graph extends Fragment implements View.OnClickListener {
+public class Graph extends Fragment {
 
     @BindView(R.id.graph)
     GraphView graphView;
-    @BindView(R.id.graph_holder)
-    View graph_holder;
 
     private LineGraphSeries<DataPoint> series;
     private double graph2LastXValue = 0d, start = System.currentTimeMillis();
@@ -59,13 +60,13 @@ public class Graph extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_graph, container, false);
         ButterKnife.bind(this, view);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -74,7 +75,6 @@ public class Graph extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         if (getActivity() == null)
             return;
-        graph_holder.setOnClickListener(this);
 
         titles = getResources().getStringArray(R.array.digital_titles);
         series = new LineGraphSeries<>();
@@ -84,7 +84,7 @@ public class Graph extends Fragment implements View.OnClickListener {
         graphView.getLegendRenderer().setBackgroundColor(Color.WHITE);
         graphView.getLegendRenderer().setTextColor(ContextCompat.getColor(getActivity(), R.color.secondary_text));
         graphView.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
-        series.setColor(ContextCompat.getColor(getActivity(), R.color.accent));
+        series.setColor(ContextCompat.getColor(getActivity(), R.color.primary));
         series.setDrawDataPoints(true);
         series.setDrawBackground(true);
         series.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.accent_track));
@@ -163,7 +163,7 @@ public class Graph extends Fragment implements View.OnClickListener {
                 break;
         }
         graph2LastXValue = (System.currentTimeMillis() - start) / 1000;
-        Log.d("JSON", graph2LastXValue+"");
+        Log.d("JSON", graph2LastXValue + "");
         series.appendData(new DataPoint(graph2LastXValue, d), true, 10);
     }
 
@@ -174,12 +174,18 @@ public class Graph extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case R.id.graph_holder:
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.graph_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.graph:
                 dialog();
                 break;
         }
+        return super.onOptionsItemSelected(item);
     }
 }
