@@ -48,7 +48,7 @@
     <string name="title_motor_speed">Motor Speed</string>
     <string name="title_wind_speed">Wind Speed</string>
     <string name="title_attack_angle">Attack Angle</string>
-    <string name="title_pitot_speed">Pitot Speed</string>
+    <string name="title_pitot_speed">Target Speed</string>
     <string name="title_temperature">Temperature</string>
     <string name="title_humidity">Humidity</string>
     <string name="title_altitude">Altitude</string>
@@ -57,10 +57,11 @@
     <string name="title_weight_3">Weight 3</string>
     <string name="plot_dialog_title">Data to plot</string>
     <string-array name="digital_titles">
+        <item>Time</item>
         <item>Motor Speed</item>
         <item>Wind Speed</item>
         <item>Attack Angle</item>
-        <item>Pitot Speed</item>
+        <item>Target Speed</item>
         <item>Temperature</item>
         <item>Humidity</item>
         <item>Altitude</item>
@@ -68,6 +69,12 @@
         <item>Weight 2</item>
         <item>Weight 3</item>
     </string-array>
+
+    <string name="Y">Y - %s (%s)</string>
+    <string name="X">X - %s (%s)</string>
+    <string name="y_label">Y - Motor Speed (m/s)</string>
+    <string name="x_label">X - Time (s)</string>
+    <string name="graph_title">%s vs %s</string>
 
     <string name="unit_speed">m/s</string>
     <string name="unit_angle">\u00B0</string>
@@ -80,10 +87,11 @@
     <string name="random">random scenario</string>
     <string name="graph_item">values to graph</string>
     <string-array name="digital_units">
-        <item>mps</item>
-        <item>mps</item>
-        <item>deg</item>
-        <item>mps</item>
+        <item>s</item>
+        <item>m/s</item>
+        <item>m/s</item>
+        <item>\u00B0</item>
+        <item>m/s</item>
         <item>\u2103</item>
         <item>%</item>
         <item>m</item>

@@ -31,7 +31,9 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/title_motor_speed"
+                app:autoSizeMaxTextSize="24sp"
                 app:autoSizeTextType="uniform" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -46,13 +48,14 @@
                 android:layout_weight="3"
                 android:background="@drawable/value_bg"
                 android:gravity="center"
+                android:maxLines="1"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/primary_text"
-                app:autoSizeTextType="uniform"
-                android:maxLines="1"/>
+                app:autoSizeMaxTextSize="28sp"
+                app:autoSizeTextType="uniform" />
 
         </LinearLayout>
 
@@ -68,7 +71,9 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/title_wind_speed"
+                app:autoSizeMaxTextSize="24sp"
                 app:autoSizeTextType="uniform" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -83,11 +88,13 @@
                 android:layout_weight="3"
                 android:background="@drawable/value_bg"
                 android:gravity="center"
+                android:maxLines="1"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/primary_text"
+                app:autoSizeMaxTextSize="28sp"
                 app:autoSizeTextType="uniform" />
 
         </LinearLayout>
@@ -104,7 +111,9 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/title_attack_angle"
+                app:autoSizeMaxTextSize="24sp"
                 app:autoSizeTextType="uniform" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -119,11 +128,13 @@
                 android:layout_weight="3"
                 android:background="@drawable/value_bg"
                 android:gravity="center"
+                android:maxLines="1"
                 android:paddingBottom="8dp"
                 android:paddingEnd="24dp"
                 android:paddingStart="24dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/primary_text"
+                app:autoSizeMaxTextSize="28sp"
                 app:autoSizeTextType="uniform" />
 
         </LinearLayout>
@@ -140,7 +151,9 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/title_pitot_speed"
+                app:autoSizeMaxTextSize="24sp"
                 app:autoSizeTextType="uniform" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -155,11 +168,13 @@
                 android:layout_weight="3"
                 android:background="@drawable/value_bg"
                 android:gravity="center"
+                android:maxLines="1"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/primary_text"
+                app:autoSizeMaxTextSize="28sp"
                 app:autoSizeTextType="uniform" />
 
         </LinearLayout>
@@ -192,7 +207,9 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/title_temperature"
+                app:autoSizeMaxTextSize="24sp"
                 app:autoSizeTextType="uniform" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -207,11 +224,13 @@
                 android:layout_weight="3"
                 android:background="@drawable/value_bg"
                 android:gravity="center"
+                android:maxLines="1"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/primary_text"
+                app:autoSizeMaxTextSize="28sp"
                 app:autoSizeTextType="uniform" />
 
         </LinearLayout>
@@ -228,7 +247,9 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/title_altitude"
+                app:autoSizeMaxTextSize="24sp"
                 app:autoSizeTextType="uniform" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -243,11 +264,13 @@
                 android:layout_weight="3"
                 android:background="@drawable/value_bg"
                 android:gravity="center"
+                android:maxLines="1"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/primary_text"
+                app:autoSizeMaxTextSize="28sp"
                 app:autoSizeTextType="uniform" />
 
         </LinearLayout>
@@ -264,7 +287,9 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/title_humidity"
+                app:autoSizeMaxTextSize="24sp"
                 app:autoSizeTextType="uniform" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -279,11 +304,13 @@
                 android:layout_weight="3"
                 android:background="@drawable/value_bg"
                 android:gravity="center"
+                android:maxLines="1"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/primary_text"
+                app:autoSizeMaxTextSize="28sp"
                 app:autoSizeTextType="uniform" />
 
         </LinearLayout>
@@ -316,7 +343,9 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/title_weight_1"
+                app:autoSizeMaxTextSize="24sp"
                 app:autoSizeTextType="uniform" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -331,11 +360,13 @@
                 android:layout_weight="3"
                 android:background="@drawable/value_bg"
                 android:gravity="center"
+                android:maxLines="1"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/primary_text"
+                app:autoSizeMaxTextSize="28sp"
                 app:autoSizeTextType="uniform" />
 
         </LinearLayout>
@@ -352,7 +383,9 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/title_weight_2"
+                app:autoSizeMaxTextSize="24sp"
                 app:autoSizeTextType="uniform" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -367,11 +400,13 @@
                 android:layout_weight="3"
                 android:background="@drawable/value_bg"
                 android:gravity="center"
+                android:maxLines="1"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/primary_text"
+                app:autoSizeMaxTextSize="28sp"
                 app:autoSizeTextType="uniform" />
 
         </LinearLayout>
@@ -388,7 +423,9 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/title_weight_3"
+                app:autoSizeMaxTextSize="24sp"
                 app:autoSizeTextType="uniform" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -403,11 +440,13 @@
                 android:layout_weight="3"
                 android:background="@drawable/value_bg"
                 android:gravity="center"
+                android:maxLines="1"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/primary_text"
+                app:autoSizeMaxTextSize="28sp"
                 app:autoSizeTextType="uniform" />
 
         </LinearLayout>
