@@ -5,6 +5,12 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
+    <supports-screens
+        android:normalScreens="false"
+        android:smallScreens="false" />
+
+    <uses-configuration android:reqTouchScreen="undefined" />
+
     <application
         android:name=".App"
         android:allowBackup="true"

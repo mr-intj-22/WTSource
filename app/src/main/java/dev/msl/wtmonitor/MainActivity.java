@@ -10,33 +10,25 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
-
-import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,7 +49,7 @@ import static dev.msl.wtmonitor.Utils.BTUtils.isBTEnabled;
 import static dev.msl.wtmonitor.Utils.ScreenUtils.getPixelsFromDPs;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener,
-        SeekBar.OnSeekBarChangeListener, BluetoothDeviceManager.BluetoothDevicePickResultHandler {
+        SeekBar.OnSeekBarChangeListener, BluetoothDeviceManager.BluetoothDevicePickResultHandler, MenuItem.OnMenuItemClickListener {
 
     /* main */
     @BindView(R.id.toolbar)
@@ -88,11 +80,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     private DigitalMonitor digitalMonitor = null;
     private Graph graph = null;
 
-    private StringBuffer mOutStringBuffer;
-
-    /*fragments*/
-//    private ScenarioFragment sideFragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         /* Side Menu */
         Menu nav_menu = sideMenuNav.getMenu();
+        nav_menu.findItem(R.id.tare).setOnMenuItemClickListener(this);
         scenarioSwitch = nav_menu.findItem(R.id.scenario_status).getActionView().findViewById(R.id.scenario_switch);
         scenarioSwitch.setChecked(false);
         scenarioSwitch.setOnCheckedChangeListener(this);
@@ -134,11 +122,21 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         fragmentTransaction.commit();
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.tare:
+                tareVlaues();
+                return true;
+        }
+        return false;
+    }
+
     private class ViewPagerAdapter extends FragmentPagerAdapter {
 
         String[] title = getResources().getStringArray(R.array.tabs);
 
-        public ViewPagerAdapter(FragmentManager manager) {
+        ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
 
@@ -258,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     protected void onStart() {
         super.onStart();
         if (bluetoothService == null) {
-            setupChat();
+            setupConnection();
         }
     }
 
@@ -293,12 +291,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     /**
      * Set up the UI and background operations for chat.
      */
-    private void setupChat() {
+    private void setupConnection() {
         // Initialize the BluetoothChatService to perform bluetooth connections
         bluetoothService = new BluetoothService(this, mHandler);
-
-        // Initialize the buffer for outgoing messages
-        mOutStringBuffer = new StringBuffer();
     }
 
     /**
@@ -315,6 +310,26 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         sentData.setAttack_Angle(angle);
         sentData.setTarget_Pitot_Speed(speed);
         String message = JSONUtils.toJson(sentData);
+
+        // Check that there's actually something to send
+        if (message.length() > 0) {
+            // Get the message bytes and tell the BluetoothChatService to write
+            byte[] send = message.getBytes();
+            bluetoothService.write(send);
+        }
+    }
+
+    /**
+     * Sends a Tare Command.
+     */
+    public void tareVlaues() {
+        // Check that we're actually connected before trying anything
+        if (bluetoothService.getState() != BluetoothService.STATE_CONNECTED) {
+            Toast.makeText(this, R.string.none_found, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String message = "Command";
 
         // Check that there's actually something to send
         if (message.length() > 0) {
@@ -385,10 +400,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     }
                     break;
                 case Const.MESSAGE_WRITE:
-                    byte[] writeBuf = (byte[]) msg.obj;
+                    // byte[] writeBuf = (byte[]) msg.obj;
                     // construct a string from the buffer
-                    String writeMessage = new String(writeBuf);
-                    Log.d("JSON", writeMessage);
+                    // String writeMessage = new String(writeBuf);
                     break;
                 case Const.MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;

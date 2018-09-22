@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <group
-        android:id="@+id/connection_status_group">
+    <group android:id="@+id/connection_status_group">
         <item
             android:id="@+id/connection_status"
             android:title=""
             app:actionLayout="@layout/status_bt_connection"
+            app:showAsAction="ifRoom" />
+    </group>
+    <group android:id="@+id/tare_group">
+        <item
+            android:id="@+id/tare"
+            android:title="@string/tare_values"
             app:showAsAction="ifRoom" />
     </group>
     <group android:id="@+id/scenario_status_group">

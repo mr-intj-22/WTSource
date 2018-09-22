@@ -60,6 +60,7 @@ public class Graph extends Fragment implements View.OnClickListener {
     private int xpos = 0, ypos = 1;
     private String[] labels, units;
     private AlertDialog alert;
+    private AlertDialog.Builder alt_bld;
     private int axis = 0;
 
 
@@ -82,6 +83,9 @@ public class Graph extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         if (getActivity() == null)
             return;
+
+        alt_bld = new AlertDialog.Builder(getActivity());
+        alt_bld.setTitle(getString(R.string.plot_dialog_title));
 
         labels = getResources().getStringArray(R.array.digital_titles);
         units = getResources().getStringArray(R.array.digital_units);
@@ -107,7 +111,7 @@ public class Graph extends Fragment implements View.OnClickListener {
         graphView.getViewport().setXAxisBoundsManual(true);
         graphView.getViewport().setMinX(0);
         graphView.getViewport().setMaxX(5);
-        handler.postDelayed(runnable, 1000);
+//        handler.postDelayed(runnable, 1000);
     }
 
     private Handler handler = new Handler();
@@ -122,28 +126,22 @@ public class Graph extends Fragment implements View.OnClickListener {
     };
 
     private void dialog() {
-        if (alert == null) {
-            AlertDialog.Builder alt_bld = new AlertDialog.Builder(getActivity());
-            //alt_bld.setIcon(R.drawable.icon);
-            alt_bld.setTitle(getString(R.string.plot_dialog_title));
-            alt_bld.setSingleChoiceItems(R.array.digital_titles, axis == 0 ? xpos : ypos, new DialogInterface
-                    .OnClickListener() {
-
-                public void onClick(DialogInterface dialog, int item) {
-                    if (axis == 0) {
-                        Graph.this.xpos = item;
-                        xlable.setText(String.format(getString(R.string.X), labels[xpos], units[xpos]));
-                    } else {
-                        Graph.this.ypos = item;
-                        ylable.setText(String.format(getString(R.string.Y), labels[ypos], units[ypos]));
-                    }
-                    series.setTitle(String.format(getString(R.string.graph_title), labels[ypos], labels[xpos]));
-                    dialog.dismiss();// dismiss the alertbox after chose option
-                    reset();
+        alt_bld.setSingleChoiceItems(R.array.digital_titles, axis == 0 ? Graph.this.xpos : Graph.this.ypos, new DialogInterface
+                .OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                if (axis == 0) {
+                    Graph.this.xpos = item;
+                    xlable.setText(String.format(getString(R.string.X), labels[xpos], units[xpos]));
+                } else {
+                    Graph.this.ypos = item;
+                    ylable.setText(String.format(getString(R.string.Y), labels[ypos], units[ypos]));
                 }
-            });
-            alert = alt_bld.create();
-        }
+                series.setTitle(String.format(getString(R.string.graph_title), labels[ypos], labels[xpos]));
+                dialog.dismiss();// dismiss the alertbox after chose option
+                reset();
+            }
+        });
+        alert = alt_bld.create();
         alert.show();
     }
 

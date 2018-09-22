@@ -7,7 +7,7 @@
         android:id="@+id/scenario_switch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:checked="true"
+        android:checked="false"
         android:text="@string/scenario_status"/>
 
 </RelativeLayout>

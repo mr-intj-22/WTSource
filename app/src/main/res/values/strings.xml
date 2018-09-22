@@ -86,6 +86,7 @@
     <string name="from_file">load from file</string>
     <string name="random">random scenario</string>
     <string name="graph_item">values to graph</string>
+    <string name="tare_values">Tare Values</string>
     <string-array name="digital_units">
         <item>s</item>
         <item>m/s</item>
