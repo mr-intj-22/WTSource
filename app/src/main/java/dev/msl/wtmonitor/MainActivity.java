@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.tare:
-                tareVlaues();
+                tareWeight();
                 return true;
         }
         return false;
@@ -322,19 +322,19 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     /**
      * Sends a Tare Command.
      */
-    public void tareVlaues() {
+    public void tareWeight() {
         // Check that we're actually connected before trying anything
         if (bluetoothService.getState() != BluetoothService.STATE_CONNECTED) {
             Toast.makeText(this, R.string.none_found, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String message = "Command";
+        String command = "TARE_WEIGHT";
 
         // Check that there's actually something to send
-        if (message.length() > 0) {
-            // Get the message bytes and tell the BluetoothChatService to write
-            byte[] send = message.getBytes();
+        if (command.length() > 0) {
+            // Get the command bytes and tell the BluetoothChatService to write
+            byte[] send = command.getBytes();
             bluetoothService.write(send);
         }
     }
