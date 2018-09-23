@@ -1,5 +1,5 @@
 # WTSource - Alti Dynamics
-A **Monitoring** and **Controlling** app for a WindTunnel, using data sent from Arduino Micro-controller via Bluetooth connection.
+A **Monitoring** and **Controlling** app for a WindTunnel, using data sent from Arduino Micro-Controller via Bluetooth connection.
 
 ## Features
 
