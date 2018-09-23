@@ -8,7 +8,7 @@ import dev.msl.wtmonitor.App;
 
 public class BTUtils {
 
-    public static boolean isBTSupported() {
+    private static boolean isBTSupported() {
         return App.getBluetoothAdapter() != null;
     }
 
@@ -19,7 +19,7 @@ public class BTUtils {
     }
 
     public static boolean isBTEnabled() {
-        return App.getBluetoothAdapter().isEnabled();
+        return isBTSupported() && App.getBluetoothAdapter().isEnabled();
     }
 
     public static void enableBT() {
