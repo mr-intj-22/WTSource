@@ -11,7 +11,7 @@ A **Monitoring** and **Controlling** app for a WindTunnel, using data sent from 
 
 ## Screenshots
 
-![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![alt text](https://github.com/AbdulmalekShefat/WTSource/blob/master/Screenshots/device-2018-09-23-144832.png)
 
 ## Libraries Used
 
