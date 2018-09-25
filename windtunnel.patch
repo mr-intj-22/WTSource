@@ -476,8 +476,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +
 +            return buf.toString();
 +
-+        } catch (Exception e) {
-+            Log.d("JSON", e.getMessage());
++        } catch (Exception ignored) {
 +        }
 +        return "";
 +    }
@@ -697,9 +696,6 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 +                    scenarios.add(scenario);
 +                }
 +                scenario.setDuration(Integer.valueOf(add_scenario_duration.getText().toString()));
-+                Log.d("JSON", "start: " + scenario.getStart_time());
-+                Log.d("JSON", "for: " + scenario.getDuration());
-+                Log.d("JSON", "total: " + scenario.getTotal());
 +                ScenarioUtils.sortScenarios(scenarios);
 +                scenarios = ScenarioUtils.combineScenarios(scenarios);
 +                scenariosAdapter.insert(scenario);

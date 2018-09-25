@@ -1,8 +1,12 @@
 package dev.msl.wtmonitor.Scenarios;
 
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -10,10 +14,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,10 +28,12 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.liefery.android.vertical_stepper_view.VerticalStepperView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -37,6 +43,9 @@ import butterknife.ButterKnife;
 import dev.msl.wtmonitor.MainActivity;
 import dev.msl.wtmonitor.POJO.Scenario;
 import dev.msl.wtmonitor.R;
+import dev.msl.wtmonitor.Utils.JSONUtils;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -44,6 +53,8 @@ import dev.msl.wtmonitor.R;
  */
 public class ScenarioFragment extends Fragment implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
 
+    private final int PERMISSIONS_REQUEST_READ_STORAGE = 1242;
+    private final int PICK_SCENARIO = 1241;
     /* Side View */
     @BindView(R.id.add_scenario)
     FloatingActionButton addScenario;
@@ -146,7 +157,7 @@ public class ScenarioFragment extends Fragment implements View.OnClickListener, 
                 }
                 break;
             case R.id.scenario_menu:
-                PopupMenu popup = new PopupMenu(getContext(), view);
+                PopupMenu popup = new PopupMenu(Objects.requireNonNull(getContext()), view);
                 //Inflating the Popup using xml file
                 popup.getMenuInflater()
                         .inflate(R.menu.scenario_menu, popup.getMenu());
@@ -159,6 +170,7 @@ public class ScenarioFragment extends Fragment implements View.OnClickListener, 
                                 adapter.clear();
                                 break;
                             case R.id.from_file:
+                                requestPermission();
                                 break;
                             case R.id.random:
                                 randomScenarios(10);
@@ -170,6 +182,51 @@ public class ScenarioFragment extends Fragment implements View.OnClickListener, 
                 popup.show(); //showing popup menu
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK || data.getData() == null)
+            return;
+
+        switch (requestCode) {
+            case PICK_SCENARIO:
+                // Get the Uri of the selected file
+                Uri uri = data.getData();
+                String uriString = uri.getPath();
+                File json = new File(uriString);
+                adapter.clear();
+                adapter.reset();
+                try {
+                    adapter.addStep(JSONUtils.fromJSONArray(file2String(json)));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case PERMISSIONS_REQUEST_READ_STORAGE:
+                pickScenario();
+                break;
+        }
+    }
+
+    private void pickScenario() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setType("application/*");
+        startActivityForResult(intent, PICK_SCENARIO);
+    }
+
+    private String file2String(File file) throws IOException {
+        int length = (int) file.length();
+
+        byte[] bytes = new byte[length];
+
+        try (FileInputStream in = new FileInputStream(file)) {
+            int i = in.read(bytes);
+            in.close();
+        }
+        return new String(bytes);
     }
 
     private void cardVisibility() {
@@ -219,7 +276,7 @@ public class ScenarioFragment extends Fragment implements View.OnClickListener, 
     }
 
     private void sync(int delay) {
-        ((MainActivity) getActivity()).sendData(
+        ((MainActivity) Objects.requireNonNull(getActivity())).sendData(
                 adapter.getScenario().getMotor_speed(),
                 adapter.getScenario().getMotor_angle());
         if (adapter.hasNext()) {
@@ -289,5 +346,22 @@ public class ScenarioFragment extends Fragment implements View.OnClickListener, 
                     .setMotor_angle(random.nextInt(max_angle + 1) - margin_angle));
         }
         adapter.addStep(scenarios);
+    }
+
+    private void requestPermission() {
+        if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            // No explanation needed; request the permission
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    PERMISSIONS_REQUEST_READ_STORAGE);
+
+            // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+            // app-defined int constant. The callback method gets the
+            // result of the request.
+        } else {
+            pickScenario();
+        }
     }
 }

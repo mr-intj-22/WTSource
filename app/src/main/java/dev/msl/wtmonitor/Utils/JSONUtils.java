@@ -1,11 +1,9 @@
 package dev.msl.wtmonitor.Utils;
 
-import android.content.Context;
-import android.util.Log;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import dev.msl.wtmonitor.App;
 import dev.msl.wtmonitor.POJO.MonitoredData;
@@ -18,17 +16,16 @@ public class JSONUtils {
         try {
             return App.getGson().fromJson(JSON, MonitoredData.class);
         } catch (Exception e) {
-            Log.d("JSON", e.getMessage());
             return new MonitoredData();
         }
     }
 
-    public static Scenario scenarioFromJSON(String JSON) {
+    public static ArrayList<Scenario> fromJSONArray(String JSON) {
         try {
-            return App.getGson().fromJson(JSON, Scenario.class);
+            return App.getGson().fromJson(JSON, new TypeToken<List<Scenario>>() {
+            }.getType());
         } catch (Exception e) {
-            Log.d("JSON", e.getMessage());
-            return new Scenario();
+            return new ArrayList<>();
         }
     }
 

@@ -134,7 +134,6 @@ public class BluetoothService {
      * Start the ConnectThread to initiate a connection to a remote device.
      *
      * @param device   The BluetoothDevice to connect
-     * @param 'secure' Socket Security type - Secure (true) , Insecure (false)
      */
     public synchronized void connect(BluetoothDevice device) {
 
@@ -298,12 +297,12 @@ public class BluetoothService {
         // The local server socket
         private BluetoothServerSocket mmServerSocket;
 
-        public AcceptThread() {
+        AcceptThread() {
             // Create a new listening server socket
             try {
                 mmServerSocket = mAdapter.listenUsingRfcommWithServiceRecord(NAME_SECURE,
                         MY_UUID_SECURE);
-            } catch (IOException e) {
+            } catch (IOException ignored) {
 
             }
             mState = STATE_LISTEN;
@@ -349,7 +348,7 @@ public class BluetoothService {
 
         }
 
-        public void cancel() {
+        void cancel() {
             try {
                 mmServerSocket.close();
             } catch (IOException ignored) {
@@ -368,7 +367,7 @@ public class BluetoothService {
         private BluetoothSocket mmSocket;
         private final BluetoothDevice mmDevice;
 
-        public ConnectThread(BluetoothDevice device) {
+        ConnectThread(BluetoothDevice device) {
             mmDevice = device;
 
             // Get a BluetoothSocket for a connection with the
@@ -413,7 +412,7 @@ public class BluetoothService {
             connected(mmSocket, mmDevice);
         }
 
-        public void cancel() {
+        void cancel() {
             try {
                 mmSocket.close();
             } catch (IOException ignored) {
@@ -431,7 +430,7 @@ public class BluetoothService {
         private final InputStream mmInStream;
         private final OutputStream mmOutStream;
 
-        public ConnectedThread(BluetoothSocket socket) {
+        ConnectedThread(BluetoothSocket socket) {
             mmSocket = socket;
             InputStream tmpIn = null;
             OutputStream tmpOut = null;
@@ -467,7 +466,6 @@ public class BluetoothService {
                         }
                     }
                 } catch (IOException e) {
-                    Log.d("JSON", e.getMessage());
                     connectionLost();
                     break;
                 }
@@ -479,7 +477,7 @@ public class BluetoothService {
          *
          * @param buffer The bytes to write
          */
-        public void write(byte[] buffer) {
+        void write(byte[] buffer) {
             try {
                 mmOutStream.write(buffer);
 
@@ -491,7 +489,7 @@ public class BluetoothService {
             }
         }
 
-        public void cancel() {
+        void cancel() {
             try {
                 mmSocket.close();
             } catch (IOException ignored) {

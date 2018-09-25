@@ -19,7 +19,7 @@ public class ScenariosAdapter extends VerticalStepperAdapter {
     private ArrayList<Scenario> scenarios;
     private int position = 0;
 
-    public ScenariosAdapter(Context context) {
+    ScenariosAdapter(Context context) {
         super(context);
         this.c = context;
         scenarios = new ArrayList<>();
@@ -33,10 +33,10 @@ public class ScenariosAdapter extends VerticalStepperAdapter {
     }
 
     public void addStep(ArrayList<Scenario> scenarios) {
-        this.scenarios = scenarios;
-        notifyDataSetChanged();
         if (position > 0)
             reset();
+        this.scenarios = scenarios;
+        notifyDataSetChanged();
     }
 
     public void clear() {
@@ -87,14 +87,12 @@ public class ScenariosAdapter extends VerticalStepperAdapter {
         return content;
     }
 
-    @Nullable
     @Override
     public void next() {
         super.next();
         position++;
     }
 
-    @Nullable
     @Override
     public void previous() {
         super.previous();
