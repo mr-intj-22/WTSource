@@ -1,5 +1,5 @@
 # WTSource - Alti Dynamics
-A **Monitoring** and **Controlling** app for a WindTunnel, using data sent from Arduino Micro-controller via Bluetooth connection.
+A **Monitoring** and **Controlling** app for a WindTunnel, using data sent from Arduino Micro-Controller via Bluetooth connection.
 
 ## Features
 
@@ -7,11 +7,13 @@ A **Monitoring** and **Controlling** app for a WindTunnel, using data sent from 
 - [x] Recieving data from Arduino and displaying it in a user-friendly manner.
 - [x] Control the Speed and Angle of the WindTunnle using the app.
 - [x] Create pre-written scenarios and apply them.
-- [ ] \(Optional) Showing the recieved data in an easy-to-read graph (needs work).
+- [x] \(Optional) Showing the recieved data in an easy-to-read graph (needs work).
 
 ## Screenshots
 
-![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![Digital Monitoring](https://github.com/AbdulmalekShefat/WTSource/blob/master/Screenshots/device-2018-09-23-144832.png)
+![Scripted Scenario](https://github.com/AbdulmalekShefat/WTSource/blob/master/Screenshots/device-2018-09-23-144951.png)
+![Graphical Monitoring](https://github.com/AbdulmalekShefat/WTSource/blob/master/Screenshots/device-2018-09-23-145028.png)
 
 ## Libraries Used
 
