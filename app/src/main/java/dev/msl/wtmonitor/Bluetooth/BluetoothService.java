@@ -314,12 +314,13 @@ public class BluetoothService {
             BluetoothSocket socket;
 
             // Listen to the server socket if we're not connected
-            while (mState != STATE_CONNECTED) {
+            while (mState != STATE_CONNECTED && mmServerSocket != null) {
                 try {
                     // This is a blocking call and will only return on a
                     // successful connection or an exception
                     socket = mmServerSocket.accept();
                 } catch (IOException e) {
+                    mHandler.obtainMessage(Const.MESSAGE_TOAST, 0,0,0).sendToTarget();
                     break;
                 }
 

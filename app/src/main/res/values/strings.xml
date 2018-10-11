@@ -43,9 +43,10 @@
 
     <!--Errors-->
     <string name="close_error">Could not close unwanted socket</string>
+    <string name="connection_lost">Connection Lost!</string>
 
     <!--Digital-->
-    <string name="title_motor_speed">Motor Speed</string>
+    <string name="title_motor_load">Motor Load</string>
     <string name="title_wind_speed">Wind Speed</string>
     <string name="title_attack_angle">Attack Angle</string>
     <string name="title_pitot_speed">Target Speed</string>
@@ -58,7 +59,7 @@
     <string name="plot_dialog_title">Data to plot</string>
     <string-array name="digital_titles">
         <item>Time</item>
-        <item>Motor Speed</item>
+        <item>Motor Load</item>
         <item>Wind Speed</item>
         <item>Attack Angle</item>
         <item>Target Speed</item>
@@ -76,12 +77,14 @@
     <string name="x_label">X - Time (s)</string>
     <string name="graph_title">%s vs %s</string>
 
+    <string name="unit_speed_load">%</string>
     <string name="unit_speed">m/s</string>
     <string name="unit_angle">\u00B0</string>
     <string name="unit_temperature">\u2103</string>
     <string name="unit_humidity">%</string>
     <string name="unit_altitude">m</string>
     <string name="unit_weight">N</string>
+    <string name="unit_weight3">N/m</string>
     <string name="clear">clear all</string>
     <string name="from_file">load from file</string>
     <string name="random">random scenario</string>
@@ -89,7 +92,7 @@
     <string name="tare_values">Tare Values</string>
     <string-array name="digital_units">
         <item>s</item>
-        <item>m/s</item>
+        <item>%</item>
         <item>m/s</item>
         <item>\u00B0</item>
         <item>m/s</item>
@@ -98,7 +101,7 @@
         <item>m</item>
         <item>N</item>
         <item>N</item>
-        <item>N</item>
+        <item>N/m</item>
     </string-array>
 
 </resources>

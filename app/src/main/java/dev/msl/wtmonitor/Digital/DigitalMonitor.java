@@ -90,13 +90,13 @@ public class DigitalMonitor extends Fragment {
 
     @SuppressLint("SetTextI18n")
     public void updateValues(MonitoredData data) {
-        motor_speed.setText(spanText(data.getMotor_Speed(), getString(R.string.unit_speed),0.7f));
+        motor_speed.setText(spanText(data.getMotor_Speed(), getString(R.string.unit_speed_load),0.7f));
         wind_speed.setText(spanText(data.getWind_Speed(), getString(R.string.unit_speed),0.7f));
         pito_speed.setText(spanText(data.getTarget_Pitot_Speed(), getString(R.string.unit_speed),0.7f));
         attack_angle.setText(spanText(data.getAttack_Angle(), getString(R.string.unit_angle),1));
         weight1.setText(spanText(data.getWeight_1(), getString(R.string.unit_weight)+"  ",0.7f));
         weight2.setText(spanText(data.getWeight_2(), getString(R.string.unit_weight),0.7f));
-        weight3.setText(spanText(data.getWeight_3(), getString(R.string.unit_weight),0.7f));
+        weight3.setText(spanText(data.getWeight_3(), getString(R.string.unit_weight3),0.7f));
         alt.setText(spanText(data.getAltitude(), getString(R.string.unit_altitude),0.7f));
         humidity.setText(spanText(data.getHumidity(), getString(R.string.unit_humidity),0.7f));
         temp.setText(spanText(data.getTemperature(), getString(R.string.unit_temperature),0.7f));
